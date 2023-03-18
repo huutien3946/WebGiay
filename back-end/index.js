@@ -12,9 +12,17 @@ dotenv.config();
 
 // CONECT DATABASE (MONGODB)
 mongoose
-  .connect(process.env.MONGODB_URL)
-  .then(console.log("Conected to Database !!!"))
-  .catch("Failed connected database");
+  .connect(process.env.MONGODB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("Conected to Database !!!");
+  })
+  .catch((err) => {
+    console.log("Cannot connect to the database!", err);
+    process.exit();
+  });
 
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cors());
