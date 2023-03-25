@@ -1,10 +1,11 @@
-const { Brand } = require("../model/model");
+const { Brand } = require("../model/brand.model");
 
 const brandController = {
   // Them brand
   addBrand: async (req, res) => {
     try {
       const newBrand = new Brand(req.body);
+      res.send(newBrand);
       const saveBrand = await newBrand.save();
       res.status(200).json(saveBrand);
     } catch (err) {

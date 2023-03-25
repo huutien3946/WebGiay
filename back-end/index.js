@@ -6,12 +6,14 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
-const giayRoute = require("./routes/giay");
-const brandRoute = require("./routes/brand");
+const productRoute = require("./routes/product.routes");
+const brandRoute = require("./routes/brand.routes");
+const sizeRoute = require("./routes/size.routes");
 
 dotenv.config();
 
 // CONECT DATABASE (MONGODB)
+
 mongoose
   .connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
@@ -25,6 +27,10 @@ mongoose
     process.exit();
   });
 
+// mongoose.connect(process.env.MONGODB_URL, () => {
+//   console.log("Connected to MongoDB successful");
+// });
+
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(cors());
 app.use(morgan("common"));
@@ -34,8 +40,9 @@ app.get("/api", (req, res) => {
 });
 
 //Routes
-app.use("/giay", giayRoute);
+app.use("/product", productRoute);
 app.use("/brand", brandRoute);
+app.use("/size", sizeRoute);
 
 app.listen(8000, () => {
   console.log("Server running in port 8000 !");
