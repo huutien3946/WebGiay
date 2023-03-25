@@ -15,6 +15,26 @@ const sizeController = {
       res.status(500).json(err); // search google: http request code nếu muốn biết code nghĩa là gì
     }
   },
+
+  //Get All size GET: ../size/
+  getAll: async (req, res) => {
+    try {
+      let allSize = await Size.find().populate("productId");
+      res.status(200).json(allSize);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  },
+
+  //Get 1 Brand GET: ../size/:id
+  getSize: async (req, res) => {
+    try {
+      let size = await Size.findById(req.params.id).populate("productId");
+      res.status(200).json(size);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
 };
 
 module.exports = sizeController;
