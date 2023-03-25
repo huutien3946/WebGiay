@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 const giayRoute = require("./routes/giay");
+const brandRoute = require("./routes/brand");
 
 dotenv.config();
 
@@ -34,6 +35,7 @@ app.get("/api", (req, res) => {
 
 //Routes
 app.use("/giay", giayRoute);
+app.use("/brand", brandRoute);
 
 app.listen(8000, () => {
   console.log("Server running in port 8000 !");
