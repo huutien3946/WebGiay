@@ -9,6 +9,9 @@ const dotenv = require("dotenv");
 const productRoute = require("./routes/product.routes");
 const brandRoute = require("./routes/brand.routes");
 const sizeRoute = require("./routes/size.routes");
+const ordeRoute = require("./routes/order.routes");
+const ordeDetailRoute = require("./routes/orderdetail.routes");
+const userRoute = require("./routes/user.routes");
 
 dotenv.config();
 
@@ -43,6 +46,9 @@ app.get("/api", (req, res) => {
 app.use("/product", productRoute);
 app.use("/brand", brandRoute);
 app.use("/size", sizeRoute);
+app.use("/order", ordeRoute);
+app.use("/orderDetail", ordeDetailRoute);
+app.use("/user", userRoute);
 
 app.listen(8000, () => {
   console.log("Server running in port 8000 !");

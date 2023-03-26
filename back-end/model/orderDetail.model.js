@@ -20,13 +20,13 @@ const orderDetailSchema = new mongoose.Schema({
   },
   price: {
     type: Number,
-    required: true,
+    // required: true,
   },
   amount: {
     type: Number,
-    required: true,
+    // required: true,
   },
 });
 
-let Order = mongoose.model("Order", orderSchema);
-module.exports = { Order };
+let OrderDetail = mongoose.model("OrderDetail", orderDetailSchema);
+module.exports = { OrderDetail };

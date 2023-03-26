@@ -6,5 +6,6 @@ const router = require("express").Router();
 router.post("/", productController.addProduct);
 router.get("/", productController.getAll);
 router.get("/:id", productController.getProduct);
+router.put("/:id", productController.editProduct);
 
 module.exports = router;

@@ -20,7 +20,7 @@ const brandController = {
       let brands = await Brand.find();
       res.status(200).json(brands);
     } catch (error) {
-      res.status(500).json(err);
+      res.status(500).json(error);
     }
   },
 
@@ -33,6 +33,8 @@ const brandController = {
       res.status(500).json(err);
     }
   },
+
+  //Edit 1 Brand PUT: ../brand/:id
   editBrand: async (req, res) => {
     try {
       let brand = await Brand.findById(req.params.id);
