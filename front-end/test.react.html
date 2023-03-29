@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add React in One Minute</title>
+  </head>
+  <body>
+
+    <!-- <h2>Add React in One Minute</h2>
+    <p>This page demonstrates using React with no build tooling.</p>
+    <p>React is loaded as a script tag.</p> -->
+
+    <!-- We will put our React component inside this div. -->
+    <div id="like_button_container"></div>
+    <div id="root"></div>
+
+
+    <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    
+        
+    </script>
+    <script type="text/babel">
+      //example 1
+        //DOm
+        // const h1DOM = document.createElement('h1');
+        
+        // h1DOM.title = 'Hello'
+        // h1DOM.className = 'heading'
+
+        // h1DOM.innerText = 'Hello guys'
+
+        // document.body.appendChild(h1DOM)
+
+        // //React
+        const h1React = React.createElement('h1', {
+            title: 'hello',
+            className: 'heading'
+        }, 'Hello guys2 !')
+
+        // //example 2: ul
+
+        // const ulDOM = document.createElement('ul')
+
+        // const liDOM1 = document.createElement('li')
+        // liDOM1.innerText = 'JavaScript'
+
+        // const liDOM2 = document.createElement('li')
+        // liDOM2.innerText = 'ReactJS'
+
+        // ulDOM.appendChild(liDOM1)
+        // ulDOM.appendChild(liDOM2)
+
+        // document.body.appendChild(ulDOM)
+
+        // //React:
+        const courses = [
+          {
+            name: 'HTML, CSS'
+          },
+          {name: 'Reponsive web design'},
+          {name: 'Reactjs'}
+        ]
+        const ulReact = ( 
+          <React.Fragment>
+          <h1>Heading</h1>        
+            <ul>
+             { courses.map(course => 
+                <li> {course.name}</li>)}
+            </ul>
+          </React.Fragment>
+
+        )
+
+        // console.log(ulReact);
+
+        //example 3:
+        //react
+
+        const postItem = React.createElement (
+          'div',
+          {
+            className: 'post-item'
+          },
+          React.createElement(
+              'h2',
+              {
+                title: 'Hoc React tai F8',
+              },'Hoc ReactJS',
+          ),
+          React.createElement('p',null, 'hoc reactjs tu co ban den nang cao')
+        )
+
+        //get root element 
+        const container = document.getElementById('root')
+
+        const root = ReactDOM.createRoot(container)
+        //react-dom -> render UI
+
+        // se render thang cuoi cung
+        root.render(h1React)
+        root.render(postItem)
+        root.render(ulReact)
+    </script>
+
+
+  </body>
+</html>
