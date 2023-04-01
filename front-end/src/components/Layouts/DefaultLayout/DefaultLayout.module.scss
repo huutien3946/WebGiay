@@ -7,8 +7,9 @@
 .container {
     width: var(--default-layout-width);
     display: flex;
+    flex: 1;
 }
 
-.content {
-    flex: 1;
+.item {
+    flex-basis: 33.33%;
 }

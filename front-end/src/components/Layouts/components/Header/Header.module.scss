@@ -17,6 +17,32 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    .brands-container {
+        display: inline-block;
+
+        .brands-list {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 120px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+
+            li {
+                padding: 12px 16px;
+                display: block;
+
+                &:hover {
+                    background-color: #f1f1f1;
+                }
+            }
+        }
+
+        .brands-label:hover + .brands-list {
+            display: block;
+        }
+    }
 }
 
 .logo {
@@ -85,4 +111,31 @@
     &:active {
         background-color: rgba(22, 24, 35, 0.06);
     }
+}
+
+button.login-btn {
+    display: inline-flex;
+    align-items: center;
+    min-width: 100px;
+    padding: 9px 16px;
+    margin: 9px 16px;
+    border-radius: 4px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    justify-content: center;
+    color: white;
+    background-color: var(--primary);
+}
+
+button.cart-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 16px;
+    margin: 9px 16px;
+    border-radius: 4px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    justify-content: center;
+    color: white;
+    background-color: yellowgreen;
 }

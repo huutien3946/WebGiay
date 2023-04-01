@@ -44,6 +44,18 @@ const productController = {
       res.status(500).json(err);
     }
   },
+
+  //Get 8 product mới GET: ../newbrands/
+  getNewProducts: async (req, res) => {
+    try {
+      const listNewProducts = await Product.find()
+        .sort({ createdAt: -1 })
+        .limit(6);
+      res.status(200).json(listNewProducts);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
 };
 
 module.exports = productController;

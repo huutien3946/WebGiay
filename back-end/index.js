@@ -43,12 +43,12 @@ app.get("/api", (req, res) => {
 });
 
 //Routes
-app.use("/product", productRoute);
-app.use("/brand", brandRoute);
-app.use("/size", sizeRoute);
-app.use("/order", ordeRoute);
-app.use("/orderDetail", ordeDetailRoute);
-app.use("/user", userRoute);
+app.use("/products", productRoute);
+app.use("/brands", brandRoute);
+app.use("/sizes", sizeRoute);
+app.use("/orders", ordeRoute);
+app.use("/orderDetails", ordeDetailRoute);
+app.use("/users", userRoute);
 
 app.listen(8000, () => {
   console.log("Server running in port 8000 !");
