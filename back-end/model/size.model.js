@@ -9,4 +9,4 @@ const SizeSchema = new mongoose.Schema({
 
 //Tạo model từ SizeSchema
 const Size = mongoose.model("Size", SizeSchema);
-module.exports = { Size };
+module.exports = Size;

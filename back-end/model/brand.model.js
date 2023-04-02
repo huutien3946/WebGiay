@@ -7,5 +7,5 @@ const brandSchema = new mongoose.Schema({
 });
 
 // Tạo model từ schema Hãng giày
-let Brand = mongoose.model("Brand", brandSchema);
-module.exports = { Brand };
+const Brand = mongoose.model("Brand", brandSchema);
+module.exports = Brand;

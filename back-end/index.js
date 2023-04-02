@@ -9,9 +9,11 @@ const dotenv = require("dotenv");
 const productRoute = require("./routes/product.routes");
 const brandRoute = require("./routes/brand.routes");
 const sizeRoute = require("./routes/size.routes");
-const ordeRoute = require("./routes/order.routes");
+const orderRoute = require("./routes/order.routes");
 const ordeDetailRoute = require("./routes/orderdetail.routes");
 const userRoute = require("./routes/user.routes");
+const cartRoute = require("./routes/cart.routes");
+const authRoute = require("./routes/auth.routes");
 
 dotenv.config();
 
@@ -46,9 +48,11 @@ app.get("/api", (req, res) => {
 app.use("/products", productRoute);
 app.use("/brands", brandRoute);
 app.use("/sizes", sizeRoute);
-app.use("/orders", ordeRoute);
+app.use("/orders", orderRoute);
 app.use("/orderDetails", ordeDetailRoute);
 app.use("/users", userRoute);
+app.use("/cart", cartRoute);
+app.use("/auth", authRoute);
 
 app.listen(8000, () => {
   console.log("Server running in port 8000 !");

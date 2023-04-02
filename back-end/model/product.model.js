@@ -12,5 +12,5 @@ const productSchema = new mongoose.Schema({
 });
 
 // Tạo model từ schema Sản phẩm
-let Product = mongoose.model("Product", productSchema);
-module.exports = { Product };
+const Product = mongoose.model("Product", productSchema);
+module.exports = Product;

@@ -1,16 +1,7 @@
-const { User } = require("../model/user.model");
-
+const User = require("../model/user.model");
+const bcrypt = require("bcrypt");
 const userController = {
   // Them User Post: ../User/
-  addUser: async (req, res) => {
-    try {
-      const newUser = new User(req.body);
-      const saveUser = await newUser.save();
-      res.status(200).json(saveUser);
-    } catch (err) {
-      res.status(500).json(err); // search google: http request code nếu muốn biết code nghĩa là gì
-    }
-  },
 
   //Get All User GET: ../User/
   getAll: async (req, res) => {

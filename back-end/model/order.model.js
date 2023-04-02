@@ -14,5 +14,5 @@ const orderSchema = new mongoose.Schema({
 });
 
 // Tạo model từ schema Đơn hàng
-let Order = mongoose.model("Order", orderSchema);
-module.exports = { Order };
+const Order = mongoose.model("Order", orderSchema);
+module.exports = Order;

@@ -1,4 +1,4 @@
-const { Brand } = require("../model/brand.model");
+const Brand = require("../model/brand.model");
 
 const brandController = {
   // Them brand Post: ../brand/

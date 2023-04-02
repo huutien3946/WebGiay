@@ -1,4 +1,4 @@
-const { Order } = require("../model/order.model");
+const Order = require("../model/order.model");
 
 const orderController = {
   // Them order Post: ../order/

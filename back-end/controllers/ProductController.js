@@ -1,4 +1,6 @@
-const { Product } = require("../model/product.model");
+const mongoose = require("mongoose");
+
+const Product = require("../model/product.model");
 
 const productController = {
   // Add product POST: /product/
@@ -54,6 +56,19 @@ const productController = {
       res.status(200).json(listNewProducts);
     } catch (err) {
       res.status(500).json(err);
+    }
+  },
+
+  getProductBrand: async (req, res) => {
+    try {
+      const targetBrandId = mongoose.Types.ObjectId(req.body.brandId); // userId cần tìm
+      const products = await Product.find({ brandId: targetBrandId });
+
+      if (products) {
+        res.status(200).json(products);
+      }
+    } catch (err) {
+      res.status(404).json("khong co san pham");
     }
   },
 };
