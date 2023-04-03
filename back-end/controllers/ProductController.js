@@ -61,7 +61,7 @@ const productController = {
 
   getProductBrand: async (req, res) => {
     try {
-      const targetBrandId = mongoose.Types.ObjectId(req.body.brandId); // userId cần tìm
+      const targetBrandId = mongoose.Types.ObjectId(req.params.brandId); // userId cần tìm
       const products = await Product.find({ brandId: targetBrandId });
 
       if (products) {

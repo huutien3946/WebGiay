@@ -74,7 +74,7 @@ function Home() {
                                 <Card.Title>{allProducts.name}</Card.Title>
                                 <Card.Text>{allProducts.description}</Card.Text>
                                 <Card.Text>{allProducts.price}</Card.Text>
-                                <Button className="btn btn-primary">Add Cart</Button>
+                                <Button className="btn btn-primary">Detail</Button>
                             </Card.Body>
                         </Card>
                     </Col>

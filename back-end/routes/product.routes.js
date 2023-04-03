@@ -6,7 +6,7 @@ const router = require("express").Router();
 router.post("/", productController.addProduct);
 router.get("/", productController.getAll);
 router.get("/newProducts", productController.getNewProducts);
-router.get("/ProductBrand", productController.getProductBrand);
+router.get("/ProductBrand/:brandId", productController.getProductBrand);
 
 router.get("/:id", productController.getProduct);
 router.put("/:id", productController.editProduct);

@@ -20,6 +20,7 @@
 
     .brands-container {
         display: inline-block;
+        
 
         .brands-list {
             display: none;
@@ -125,6 +126,21 @@ button.login-btn {
     justify-content: center;
     color: white;
     background-color: var(--primary);
+}
+
+button.home-btn{
+    display: inline-flex;
+    align-items: center;
+    min-width: 100px;
+    padding: 9px 16px;
+    margin: 9px 16px;
+    border-radius: 4px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    justify-content: center;
+    color: white;
+    background-color: aqua;
+
 }
 
 button.cart-btn {
