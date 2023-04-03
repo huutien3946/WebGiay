@@ -4,13 +4,19 @@ import Carousel from 'react-bootstrap/Carousel';
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 import './HomeStyles.scss';
 
 function Home() {
+    const navigate = useNavigate();
     const [products, setProducts] = useState([]);
     const [allProducts, setAllProducts] = useState([]);
 
+    function handleDetailClick(productId) {
+        console.log('click detail');
+        navigate(`/product/${productId}`); // Chuyển đến trang tương ứng với brandId
+    }
     useEffect(() => {
         axios
             .get('http://localhost:8000/products/newProducts')
@@ -66,15 +72,17 @@ function Home() {
 
             <h1 className="text-center my-5">All Product</h1>
             <Row xs={1} sm={2} md={4} className="g-4">
-                {allProducts.map((allProducts) => (
-                    <Col key={allProducts.id}>
+                {allProducts.map((product) => (
+                    <Col key={product.id}>
                         <Card>
-                            <Card.Img variant="top" src={allProducts.image} />
+                            <Card.Img variant="top" src={product.image} />
                             <Card.Body>
-                                <Card.Title>{allProducts.name}</Card.Title>
-                                <Card.Text>{allProducts.description}</Card.Text>
-                                <Card.Text>{allProducts.price}</Card.Text>
-                                <Button className="btn btn-primary">Detail</Button>
+                                <Card.Title>{product.name}</Card.Title>
+                                <Card.Text>{product.description}</Card.Text>
+                                <Card.Text>{product.price}</Card.Text>
+                                <Button className="btn btn-primary" onClick={() => handleDetailClick(product._id)}>
+                                    Detail
+                                </Button>
                             </Card.Body>
                         </Card>
                     </Col>

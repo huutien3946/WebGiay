@@ -1,4 +1,4 @@
-const { Cart } = require("../model/cart.model");
+const Cart = require("../model/cart.model");
 
 const mongoose = require("mongoose");
 

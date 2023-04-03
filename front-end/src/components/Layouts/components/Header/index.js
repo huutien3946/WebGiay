@@ -17,7 +17,6 @@ const cx = classNames.bind(styles);
 
 const imageName = require('./logo.jpg');
 
-
 function Header() {
     const [brands, setBrands] = useState([]);
     const navigate = useNavigate();
@@ -27,8 +26,8 @@ function Header() {
 
     function handleBrandClick(brandId) {
         navigate(`/brand/${brandId}`); // Chuyển đến trang tương ứng với brandId
-      }
-     
+    }
+
     useEffect(() => {
         axios
             .get('http://localhost:8000/brands/')
@@ -45,9 +44,15 @@ function Header() {
                 <div className={cx('logo')}>
                     <img width="120" alt="Shoe Web" src={imageName} />
                 </div>
-                <button className={cx('home-btn')}  onClick={() => navigate('/')}>
-                Home
-            </button>{' '}
+                <button className={cx('nav-btn')} onClick={() => navigate('/')}>
+                    Home
+                </button>
+                <button className={cx('nav-btn')} onClick={() => navigate('/about')}>
+                    About
+                </button>
+                <button className={cx('nav-btn')} onClick={() => navigate('/contact')}>
+                    Contact
+                </button>
                 {/* dropdown */}
                 <Dropdown>
                     <Dropdown.Toggle
@@ -60,7 +65,9 @@ function Header() {
 
                     <Dropdown.Menu style={{ fontSize: '16px', fontWeight: 700 }}>
                         {brands.map((brand) => (
-                            <Dropdown.Item key={brand.id} onClick={() => handleBrandClick(brand._id)}>{brand.name}</Dropdown.Item>
+                            <Dropdown.Item key={brand.id} onClick={() => handleBrandClick(brand._id)}>
+                                {brand.name}
+                            </Dropdown.Item>
                         ))}
                     </Dropdown.Menu>
                 </Dropdown>

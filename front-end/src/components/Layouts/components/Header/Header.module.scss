@@ -20,7 +20,6 @@
 
     .brands-container {
         display: inline-block;
-        
 
         .brands-list {
             display: none;
@@ -128,7 +127,7 @@ button.login-btn {
     background-color: var(--primary);
 }
 
-button.home-btn{
+button.nav-btn {
     display: inline-flex;
     align-items: center;
     min-width: 100px;
@@ -140,7 +139,6 @@ button.home-btn{
     justify-content: center;
     color: white;
     background-color: aqua;
-
 }
 
 button.cart-btn {

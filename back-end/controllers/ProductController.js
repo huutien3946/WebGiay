@@ -29,7 +29,9 @@ const productController = {
   //Get 1 Brand GET: ../brand/:id
   getProduct: async (req, res) => {
     try {
-      let product = await Product.findById(req.params.id).populate("sizes");
+      let product = await Product.findById(req.params.id)
+        .populate("sizes")
+        .populate("brandId");
       res.status(200).json(product);
     } catch (err) {
       res.status(500).json(err);
