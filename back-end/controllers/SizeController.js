@@ -1,5 +1,5 @@
-const { Product } = require("../model/product.model");
-const { Size } = require("../model/size.model");
+const Product = require("../model/product.model");
+const Size = require("../model/size.model");
 
 const sizeController = {
   // Them size
@@ -31,6 +31,16 @@ const sizeController = {
     try {
       let size = await Size.findById(req.params.id).populate("productId");
       res.status(200).json(size);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+
+  //Get 1 Size of Product GET: ../size/:id
+  getSizeOfProduct: async (req, res) => {
+    try {
+      let sizeOfProduct = await Size.find({ productId: req.params.productId });
+      res.status(200).json(sizeOfProduct);
     } catch (err) {
       res.status(500).json(err);
     }

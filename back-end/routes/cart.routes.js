@@ -5,7 +5,7 @@ const router = require("express").Router();
 router.post("/addItem", cartController.addItem);
 
 // Route to remove an item from the cart
-router.delete("/removeItem", cartController.removeItem);
+router.delete("/removeItem/:productId", cartController.removeItem);
 
 // Route to clear the cart
 router.post("/clear/:id", cartController.clearCart);

@@ -9,6 +9,7 @@ import { Dropdown } from 'react-bootstrap';
 import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css'; // optional
 
+import jwt_decode from 'jwt-decode';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -18,8 +19,21 @@ const cx = classNames.bind(styles);
 const imageName = require('./logo.jpg');
 
 function Header() {
+    const token = localStorage.getItem('token');
+    var username;
+    var isLoggedIn = false;
+
+    if (token) {
+        const decoded = jwt_decode(token);
+        username = decoded.username;
+        isLoggedIn = true;
+    } else {
+        username = null;
+    }
+
     const [brands, setBrands] = useState([]);
     const navigate = useNavigate();
+
     function handleClick() {
         navigate('/login');
     }
@@ -83,13 +97,41 @@ function Header() {
                         </button>
                     </Tippy>
                 </div>
+                <button className={cx('cart-btn')}>
+                    <FontAwesomeIcon icon={faShoppingCart} />
+                </button>
+
+                {!isLoggedIn ? (
+                    <button className={cx('login-btn')} onClick={handleClick}>
+                        Log in
+                    </button>
+                ) : (
+                    <Dropdown>
+                        <Dropdown.Toggle
+                            variant="success"
+                            id="dropdown-basic"
+                            style={{ fontSize: '16px', fontWeight: 700 }}
+                        >
+                            {username}
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu
+                            style={{ fontSize: '16px', fontWeight: 700, width: '100%', textAlign: 'center' }}
+                        >
+                            <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
+                            <Dropdown.Item
+                                href="/login"
+                                onClick={() => {
+                                    localStorage.removeItem('token');
+                                }}
+                            >
+                                Log out
+                            </Dropdown.Item>
+                            <Dropdown.Item href="#/action-3">Action 3</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                )}
             </div>
-            <button className={cx('cart-btn')}>
-                <FontAwesomeIcon icon={faShoppingCart} />
-            </button>
-            <button className={cx('login-btn')} onClick={handleClick}>
-                Log in
-            </button>{' '}
         </header>
     );
 }

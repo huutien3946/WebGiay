@@ -5,7 +5,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import './BrandStyle.scss';
+import classNames from 'classnames/bind';
+import styles from './BrandStyle.scss';
+
+const cx = classNames.bind(styles);
 
 function Brand() {
     const [products, setProducts] = useState([]);
@@ -29,7 +32,7 @@ function Brand() {
     }
 
     return (
-        <div className="container">
+        <div className={cx('wrapper')}>
             <h1 className="text-center my-5">Brand</h1>
 
             <Row xs={1} sm={2} md={4} className="g-4">

@@ -1,0 +1,37 @@
+.row {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 20px;
+    min-height: 630px;
+}
+
+.column-left {
+    float: left;
+    width: 50%;
+    height: 400px;
+}
+
+.column-right {
+    float: right;
+    width: 50%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.display-sizes {
+    display: flex;
+    justify-content: center;
+
+    .size-btn {
+        font-size: 10px;
+        font-weight: 700;
+        background-color: green;
+        color: var(--white);
+        padding: 10px;
+        margin: 5px;
+        border-radius: 5px;
+    }
+}

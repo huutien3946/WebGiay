@@ -1,24 +1,29 @@
-img.card-img-top {
-    width: 250px;
-    height: 200px;
-}
+// img.card-img-top {
+//     width: 250px;
+//     height: 200px;
+// }
 
-.carousel.slide {
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    background-color: #e4e4e4;
-}
+// .carousel.slide {
+//     display: flex;
+//     flex-direction: column-reverse;
+//     align-items: center;
+//     background-color: #e4e4e4;
+// }
 
-.w-100 {
-    width: 400px !important;
-    padding-left: 10rem;
-}
+// .w-100 {
+//     width: 400px !important;
+//     padding-left: 10rem;
+// }
 
-.carousel-caption {
-    position: absolute;
-    padding-top: 1.25rem;
-    padding-bottom: 10.25rem;
-    color: black;
-    text-align: right;
+// .carousel-caption {
+//     position: absolute;
+//     padding-top: 1.25rem;
+//     padding-bottom: 10.25rem;
+//     color: black;
+//     text-align: right;
+// }
+
+.wrapper {
+    width: var(--default-layout-width);
+    justify-content: center;
 }

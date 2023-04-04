@@ -137,8 +137,11 @@ button.nav-btn {
     font-size: 1.6rem;
     font-weight: 700;
     justify-content: center;
-    color: white;
-    background-color: aqua;
+    color: var(--black);
+    background-color: var(--white);
+}
+button.nav-btn:hover {
+    color: green;
 }
 
 button.cart-btn {

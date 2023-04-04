@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
 
-import './LoginStyles.scss';
+import classNames from 'classnames/bind';
+import styles from './LoginStyles.scss';
+
+const cx = classNames.bind(styles);
 function LoginForm() {
     const [username, setUsernamel] = useState('');
     const [password, setPassword] = useState('');
@@ -26,9 +29,10 @@ function LoginForm() {
                 password: password,
             })
             .then((response) => {
-                const token = response.data.token;
+                const token = response.data.accessToken;
                 console.log(token);
                 localStorage.setItem('token', token); // Lưu token vào local storage
+
                 setIsLoggedIn(true);
             })
             .catch((error) => {
@@ -41,7 +45,8 @@ function LoginForm() {
     }
 
     return (
-        <div className="container mt-5">
+        <div className={cx('wrapper')}>
+            {/* <div className="container mt-5"> */}
             <form onSubmit={handleSubmit}>
                 <h1>Login</h1>
                 <div className="mb-3">
@@ -61,6 +66,7 @@ function LoginForm() {
                 </button>
             </form>
             {errorMessage && <div className="alert alert-danger mt-3">{errorMessage}</div>}
+            {/* </div> */}
         </div>
     );
 }
