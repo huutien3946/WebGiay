@@ -13,6 +13,7 @@ function Product() {
     const [product, setProduct] = useState({});
     const { productId } = useParams();
     const [selectedButton, setSelectedButton] = useState(null);
+    const [sizeId, setSizeId] = useState(null);
 
     const config = {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
@@ -33,6 +34,24 @@ function Product() {
 
     const handleButtonClick = (buttonIndex) => {
         setSelectedButton(buttonIndex);
+        setSizeId(buttonIndex);
+    };
+
+    //them vào cart
+    const handleAddToCart = () => {
+        const data = {
+            sizeId: sizeId,
+            price: product.price,
+        };
+        axios
+            .post('http://localhost:8000/cart/addItem', data, config)
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.log(error.response.data.message);
+                navigate('/login');
+            });
     };
 
     return (
@@ -62,7 +81,9 @@ function Product() {
                             ))}
                     </div>
                     <p>Price: {product.price}</p>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary" onClick={handleAddToCart}>
+                        Add to Cart
+                    </button>
                 </div>
             </div>
         </div>

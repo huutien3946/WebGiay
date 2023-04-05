@@ -12,7 +12,7 @@ import 'tippy.js/dist/tippy.css'; // optional
 import jwt_decode from 'jwt-decode';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -97,9 +97,11 @@ function Header() {
                         </button>
                     </Tippy>
                 </div>
-                <button className={cx('cart-btn')}>
-                    <FontAwesomeIcon icon={faShoppingCart} />
-                </button>
+                <Link to="/cart">
+                    <button className={cx('cart-btn')}>
+                        <FontAwesomeIcon icon={faShoppingCart} />
+                    </button>
+                </Link>
 
                 {!isLoggedIn ? (
                     <button className={cx('login-btn')} onClick={handleClick}>
@@ -119,6 +121,7 @@ function Header() {
                             style={{ fontSize: '16px', fontWeight: 700, width: '100%', textAlign: 'center' }}
                         >
                             <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
+                            <Dropdown.Item href="#/action-3">Order</Dropdown.Item>
                             <Dropdown.Item
                                 href="/login"
                                 onClick={() => {
@@ -127,7 +130,6 @@ function Header() {
                             >
                                 Log out
                             </Dropdown.Item>
-                            <Dropdown.Item href="#/action-3">Action 3</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 )}

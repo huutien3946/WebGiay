@@ -1,0 +1,70 @@
+@import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 600px;
+
+    font-size: 16px;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+
+        thead {
+            background-color: #f8f9fa;
+
+            th {
+                padding: 1rem;
+                text-align: left;
+                border-bottom: 2px solid #dee2e6;
+            }
+        }
+
+        tbody {
+            tr {
+                &:nth-child(even) {
+                    background-color: #f8f9fa;
+                }
+
+                td {
+                    padding: 1rem;
+                    text-align: left;
+                    border-bottom: 1px solid #dee2e6;
+                }
+            }
+        }
+
+        tfoot {
+            td {
+                text-align: right;
+                font-weight: bold;
+                border-top: 2px solid #dee2e6;
+                padding-top: 1rem;
+            }
+        }
+    }
+}
+
+img {
+    width: 100px;
+}
+
+button.btn-tt {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 16px;
+    margin: 9px 16px;
+    border-radius: 4px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    justify-content: center;
+    color: white;
+    background-color: yellowgreen;
+}

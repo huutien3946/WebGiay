@@ -14,7 +14,6 @@ function Home() {
     const [allProducts, setAllProducts] = useState([]);
 
     function handleDetailClick(productId) {
-        console.log('click detail');
         navigate(`/product/${productId}`); // Chuyển đến trang tương ứng với brandId
     }
     useEffect(() => {

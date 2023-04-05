@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 
 import classNames from 'classnames/bind';
-import styles from './LoginStyles.scss';
+import styles from './LoginStyles.module.scss';
 
 const cx = classNames.bind(styles);
 function LoginForm() {
@@ -47,25 +47,38 @@ function LoginForm() {
     return (
         <div className={cx('wrapper')}>
             {/* <div className="container mt-5"> */}
-            <form onSubmit={handleSubmit}>
+            <form className={cx('login-form')} onSubmit={handleSubmit}>
                 <h1>Login</h1>
-                <div className="mb-3">
-                    <label htmlFor="username" className="form-label">
+                <div className={cx('mb-3')}>
+                    <label htmlFor="username" className={cx('form-label')}>
                         Username
                     </label>
-                    <input type="Text" className="form-control" id="username" onChange={handleUserNameChange} />
+                    <input type="Text" className={cx('form-control')} id="username" onChange={handleUserNameChange} />
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="password" className="form-label">
+                <div className={cx('mb-3')}>
+                    <label htmlFor="password" className={cx('form-label')}>
                         Password
                     </label>
-                    <input type="password" className="form-control" id="password" onChange={handlePasswordChange} />
+                    <input
+                        type="password"
+                        className={cx('form-control')}
+                        id="password"
+                        onChange={handlePasswordChange}
+                    />
                 </div>
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className={cx('btn-primary')}>
                     Login
                 </button>
+
+                <p>
+                    Don't have an account?
+                    <Link to="/register" className={cx('link-danger')}>
+                        Register
+                    </Link>
+                </p>
+
+                {errorMessage && <div className={cx('alert alert-danger mt-3')}>{errorMessage}</div>}
             </form>
-            {errorMessage && <div className="alert alert-danger mt-3">{errorMessage}</div>}
             {/* </div> */}
         </div>
     );

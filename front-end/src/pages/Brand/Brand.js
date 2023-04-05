@@ -6,7 +6,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import classNames from 'classnames/bind';
-import styles from './BrandStyle.scss';
+import styles from './BrandStyle.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -15,10 +15,13 @@ function Brand() {
     const navigate = useNavigate();
     const { brandId } = useParams();
 
+    var haveProduct = false;
+
     useEffect(() => {
         axios
             .get(`http://localhost:8000/products/ProductBrand/${brandId}`)
             .then((response) => {
+                haveProduct = true;
                 setProducts(response.data);
             })
             .catch((error) => {
@@ -34,6 +37,9 @@ function Brand() {
     return (
         <div className={cx('wrapper')}>
             <h1 className="text-center my-5">Brand</h1>
+            {products && products.length == 0 && (
+                <p style={{ fontSize: '30px', fontWeight: '700', color: 'red' }}>Don't Have Product</p>
+            )}
 
             <Row xs={1} sm={2} md={4} className="g-4">
                 {products.map((product) => (
