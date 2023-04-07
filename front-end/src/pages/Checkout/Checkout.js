@@ -10,6 +10,23 @@ const cx = classNames.bind(styles);
 function Checkout() {
     const [cartItems, setCartItems] = useState([]);
     const [price, setPrice] = useState([]);
+    const [name, setName] = useState([]);
+    const [email, setEmail] = useState([]);
+    const [phone, setPhone] = useState([]);
+    const [address, setAddress] = useState([]);
+
+    const handleNameChange = (event) => {
+        setName(event.target.value);
+    };
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+    };
+    const handlePhoneChange = (event) => {
+        setPhone(event.target.value);
+    };
+    const handleAddressChange = (event) => {
+        setAddress(event.target.value);
+    };
 
     const navigate = useNavigate();
     useEffect(() => {
@@ -48,6 +65,45 @@ function Checkout() {
             });
     }, []);
 
+    const handleDatHang = async () => {
+        await axios
+            .post(
+                'http://localhost:8000/orders',
+                { name, email, phone, address },
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    },
+                },
+            )
+            .then((response) => {
+                handleRemoveAll();
+                alert('đặt hàng thành công');
+                navigate('/');
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
+    };
+    const handleRemoveAll = () => {
+        axios
+            .post(
+                'http://localhost:8000/cart/clear',
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    },
+                },
+            )
+            .then((response) => {
+                setCartItems(response.data);
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
+    };
+
     return (
         <div className={cx('wrapper')}>
             <div class="row">
@@ -55,19 +111,47 @@ function Checkout() {
                     <h4 style={{ padding: ' 2rem 0', borderBottom: '1px solid black' }}>Nhập thông tin mua hàng </h4>
                     <div className={cx('form-group')}>
                         <label for="usr">Họ và tên:</label>
-                        <input required="true" type="text" class="form-control" id="usr" name="fullname" />
+                        <input
+                            required="true"
+                            type="text"
+                            class="form-control"
+                            id="name"
+                            name="fullname"
+                            onChange={handleNameChange}
+                        />
                     </div>
                     <div className={cx('form-group')}>
                         <label for="email">Email:</label>
-                        <input required="true" type="email" class="form-control" id="email" name="email" />
+                        <input
+                            required="true"
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            name="email"
+                            onChange={handleEmailChange}
+                        />
                     </div>
                     <div className={cx('form-group')}>
                         <label for="phone_number">Số điện thoại:</label>
-                        <input required="true" type="text" class="form-control" id="phone_number" name="phone_number" />
+                        <input
+                            required="true"
+                            type="text"
+                            class="form-control"
+                            id="phone"
+                            name="phone"
+                            onChange={handlePhoneChange}
+                        />
                     </div>
                     <div className={cx('form-group')}>
                         <label for="address">Địa chỉ:</label>
-                        <input required="true" type="text" class="form-control" id="address" name="address" />
+                        <input
+                            required="true"
+                            type="text"
+                            class="form-control"
+                            id="address"
+                            name="address"
+                            onChange={handleAddressChange}
+                        />
                     </div>
                     <div className={cx('form-group')}>
                         <label for="note">Ghi chú:</label>
@@ -108,9 +192,10 @@ function Checkout() {
                     <p>
                         Tổng đơn hàng: <span class="bold red">{price}</span>
                     </p>
-                    <a href="dashboard.php">
-                        <button className={cx('btn btn-success')}>Đặt hàng</button>
-                    </a>
+
+                    <button className={cx('btn btn-success')} onClick={() => handleDatHang()}>
+                        Đặt hàng
+                    </button>
                 </div>
             </div>
         </div>

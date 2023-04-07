@@ -5,26 +5,14 @@ const orderDetailSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Order",
   },
-  productId: {
+  sizeId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Product",
-    required: true,
-  },
-  size: {
-    type: Number,
+    ref: "Size",
     required: true,
   },
   quantity: {
     type: Number,
     required: true,
-  },
-  price: {
-    type: Number,
-    // required: true,
-  },
-  amount: {
-    type: Number,
-    // required: true,
   },
 });
 

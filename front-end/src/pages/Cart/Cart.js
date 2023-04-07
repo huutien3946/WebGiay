@@ -134,7 +134,7 @@ function Cart() {
                                         {item.sizeId.productId.name}
                                     </td>
                                     <td className={cx('td')}>{item.sizeId.size}</td>
-                                    <td className={cx('td')}>{item.price} VND</td>
+                                    <td className={cx('td')}>{item.price} $</td>
                                     <td className={cx('td')}>
                                         <input
                                             type="number"
@@ -168,7 +168,7 @@ function Cart() {
                                     Tổng tiền:
                                 </td>
                                 <td className={cx('td')} colSpan="2">
-                                    {calculateTotalPrice()}
+                                    {calculateTotalPrice()} $
                                 </td>
                                 <td></td>
                                 <td></td>

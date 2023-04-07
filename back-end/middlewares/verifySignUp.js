@@ -23,23 +23,22 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
         res.status(500).send({ message: err });
         return;
       }
-
       if (user) {
         res.status(400).send({ message: "Failed! Email is already in use!" });
         return;
       }
-
-      next();
     });
+    let password = req.body.password;
+    let rePassword = req.body.rePassword;
+
+    if (password.localeCompare(rePassword)) {
+      res
+        .status(400)
+        .send({ message: "Password confirmation does not match!" });
+      return;
+    }
+    next();
   });
-
-  const password = req.body.password;
-  const rePassword = req.body.rePassword;
-
-  if (password.localeCompare(rePassword)) {
-    res.status(400).send({ message: "Password confirmation does not match!" });
-    return;
-  }
 };
 
 const verifySignUp = {

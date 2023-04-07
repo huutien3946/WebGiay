@@ -121,7 +121,9 @@ function Header() {
                             style={{ fontSize: '16px', fontWeight: 700, width: '100%', textAlign: 'center' }}
                         >
                             <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
-                            <Dropdown.Item href="#/action-3">Order</Dropdown.Item>
+                            <Dropdown.Item>
+                                <Link to="/order">Order</Link>{' '}
+                            </Dropdown.Item>
                             <Dropdown.Item
                                 href="/login"
                                 onClick={() => {

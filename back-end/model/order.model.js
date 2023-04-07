@@ -8,8 +8,16 @@ const orderSchema = new mongoose.Schema({
     enum: ["Đang xử lý", "Đã giao hàng", "Đã hủy"],
     default: "Đang xử lý",
   },
-  deliveryAddress: { type: String, required: true },
+  address: { type: String, required: true },
+  name: {
+    type: String,
+    required: true,
+  },
   phone: {
+    type: String,
+    required: true,
+  },
+  email: {
     type: String,
     required: true,
   },

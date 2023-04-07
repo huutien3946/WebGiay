@@ -32,6 +32,14 @@ mongoose
     process.exit();
   });
 
+app.use(function (req, res, next) {
+  res.header(
+    "Access-Control-Allow-Headers",
+    "x-access-token, Origin, Content-Type, Accept"
+  );
+  next();
+});
+
 // mongoose.connect(process.env.MONGODB_URL, () => {
 //   console.log("Connected to MongoDB successful");
 // });
@@ -49,7 +57,7 @@ app.use("/products", productRoute);
 app.use("/brands", brandRoute);
 app.use("/sizes", sizeRoute);
 app.use("/orders", orderRoute);
-app.use("/orderDetails", ordeDetailRoute);
+app.use("/orderdetails", ordeDetailRoute);
 app.use("/users", userRoute);
 app.use("/cart", cartRoute);
 app.use("/auth", authRoute);
