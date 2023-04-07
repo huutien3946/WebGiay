@@ -98,7 +98,7 @@ const cartController = {
 
   // Lấy tổng số lượng sản phẩm trong giỏ hàng
   getTotalQuantity: async (req, res) => {
-    const { userId } = req.body;
+    const userId = req.userId;
     const userIdDb = mongoose.Types.ObjectId(userId); // userId cần tìm
     const cart = await Cart.findOne({ userId: userIdDb });
     if (cart) {
@@ -114,12 +114,14 @@ const cartController = {
 
   getTotalPrice: async (req, res) => {
     try {
-      const { userId } = req.body;
+      const userId = req.userId;
       const userIdDb = mongoose.Types.ObjectId(userId);
       const cart = await Cart.findOne({ userId: userIdDb })
+
+        .populate("items.sizeId")
         .populate({
           path: "items.sizeId",
-          select: "name price",
+          populate: { path: "productId" },
         })
         .lean();
 
@@ -128,7 +130,7 @@ const cartController = {
       }
 
       const total = cart.items.reduce((acc, item) => {
-        return acc + item.product.price * item.quantity;
+        return acc + item.price * item.quantity;
       }, 0);
 
       res.status(200).json({ total });

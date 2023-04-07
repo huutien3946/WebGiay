@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Navigate, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import classNames from 'classnames/bind';
 import styles from './RegisterStyles.module.scss';
 
 const cx = classNames.bind(styles);
 function RegisterForm() {
+    const navigate = useNavigate();
+
     const [errorMessage, setErrorMessage] = useState('');
     const [username, setUsernamel] = useState('');
     const [password, setPassword] = useState('');
@@ -54,6 +56,7 @@ function RegisterForm() {
             })
             .then((response) => {
                 alert(response.data.message);
+                navigate('/login');
             })
             .catch((error) => {
                 setErrorMessage(error.response.data.message);

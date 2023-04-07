@@ -13,6 +13,8 @@ function Cart() {
 
     const navigate = useNavigate();
 
+    const token = localStorage.getItem('token');
+
     useEffect(() => {
         axios
             .get('http://localhost:8000/cart', {
@@ -106,6 +108,7 @@ function Cart() {
 
     return (
         <div className={cx('wrapper')}>
+            {!token && navigate('/login')}
             <h1>Giỏ hàng</h1>{' '}
             {cartItems.length > 0 ? (
                 <>
@@ -127,7 +130,9 @@ function Cart() {
                                     <td className={cx('td')}>
                                         <img src={item.sizeId.productId.image} />
                                     </td>
-                                    <td className={cx('td')}>{item.sizeId.productId.name}</td>
+                                    <td style={{ maxHeight: '300px' }} className={cx('td')}>
+                                        {item.sizeId.productId.name}
+                                    </td>
                                     <td className={cx('td')}>{item.sizeId.size}</td>
                                     <td className={cx('td')}>{item.price} VND</td>
                                     <td className={cx('td')}>
@@ -173,7 +178,9 @@ function Cart() {
 
                     <div className="actions">
                         <button className={cx('btn-tt')}>Tiếp tục mua hàng</button>
-                        <button className={cx('btn-tt')}>Thanh toán</button>
+                        <Link to="/checkout">
+                            <button className={cx('btn-tt')}>Thanh toán</button>
+                        </Link>
                         <button className={cx('btn-delete')} onClick={() => handleRemoveAll()}>
                             Delete all
                         </button>

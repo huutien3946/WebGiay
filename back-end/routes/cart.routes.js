@@ -27,9 +27,9 @@ router.post("/clear", authJwt.verifyToken, cartController.clearCart);
 router.get("/", authJwt.verifyToken, cartController.getItems);
 
 // Route to get the total quantity of items in the cart
-router.get("/quantity/:id", cartController.getTotalQuantity);
+router.get("/quantity", authJwt.verifyToken, cartController.getTotalQuantity);
 
 // Route to get the total price of items in the cart
-router.get("/price/:id", cartController.getTotalPrice);
+router.get("/price", authJwt.verifyToken, cartController.getTotalPrice);
 
 module.exports = router;
