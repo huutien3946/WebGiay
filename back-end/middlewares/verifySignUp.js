@@ -32,6 +32,14 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
       next();
     });
   });
+
+  const password = req.body.password;
+  const rePassword = req.body.rePassword;
+
+  if (password.localeCompare(rePassword)) {
+    res.status(400).send({ message: "Password confirmation does not match!" });
+    return;
+  }
 };
 
 const verifySignUp = {

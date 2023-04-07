@@ -45,14 +45,15 @@ const cartController = {
 
   // Xóa sản phẩm khỏi giỏ hàng
   removeItem: async (req, res) => {
-    const { sizeId, userId } = req.body;
+    const sizeId = req.params.sizeId;
+    const userId = req.userId;
+
     const userIdDb = mongoose.Types.ObjectId(userId); // userId cần tìm
     const sizeIdDb = mongoose.Types.ObjectId(sizeId);
+
     const cart = await Cart.findOne({ userId: userIdDb });
     if (cart) {
-      const itemIndex = cart.items.findIndex(
-        (p) => p.sizeId._id.toString == sizeId
-      );
+      const itemIndex = cart.items.findIndex((p) => p.sizeId.equals(sizeIdDb));
       if (itemIndex > -1) {
         cart.items.splice(itemIndex, 1);
         await cart.save();
@@ -65,7 +66,7 @@ const cartController = {
 
   // Xóa toàn bộ giỏ hàng
   clearCart: async (req, res) => {
-    const { userId } = req.body;
+    const userId = req.userId;
     const userIdDb = mongoose.Types.ObjectId(userId); // userId cần tìm
     const cart = await Cart.findOne({ userId: userIdDb });
     if (cart) {

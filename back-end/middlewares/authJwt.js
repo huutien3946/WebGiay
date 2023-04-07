@@ -12,7 +12,15 @@ verifyToken = (req, res, next) => {
 
   jwt.verify(token, process.env.MY_SECRET_KEY, (err, decoded) => {
     if (err) {
-      return res.status(401).send({ message: "Unauthorized!" });
+      if (err.name === "TokenExpiredError") {
+        return res.status(401).send({ message: "Token expired!" });
+      } else {
+        return res.status(401).send({ message: "Unauthorized!" });
+      }
+    }
+
+    if (decoded.exp < Date.now() / 1000) {
+      return res.status(401).send({ message: "Token expired!" });
     }
     req.userId = decoded.userId;
     next();

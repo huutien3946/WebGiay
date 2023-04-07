@@ -5,12 +5,14 @@ import Profile from '../pages/Profile/Profile';
 import Login from '../pages/Login/Login';
 import Cart from '../pages/Cart/Cart';
 import Product from '../pages/Product/Product';
+import RegisterForm from '../pages/Regsiter/Register';
 const publicRoutes = [
     { path: '/', component: Home },
     // { path: '/brand', component: Brand },
     { path: '/brand/:brandId', component: Brand },
     { path: '/contact', component: Contact, layout: null },
     { path: '/login', component: Login },
+    { path: '/register', component: RegisterForm },
     { path: '/profile', component: Profile },
     { path: '/cart', component: Cart },
     { path: '/product/:productId', component: Product },

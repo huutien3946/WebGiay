@@ -9,6 +9,10 @@ const orderSchema = new mongoose.Schema({
     default: "Đang xử lý",
   },
   deliveryAddress: { type: String, required: true },
+  phone: {
+    type: String,
+    required: true,
+  },
   paymentMethod: { type: String, enum: ["COD", "Online"], default: "COD" },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });

@@ -14,10 +14,14 @@ router.use(function (req, res, next) {
 router.post("/addItem", authJwt.verifyToken, cartController.addItem);
 
 // Route to remove an item from the cart
-router.delete("/removeItem/:productId", cartController.removeItem);
+router.post(
+  "/removeItem/:sizeId",
+  authJwt.verifyToken,
+  cartController.removeItem
+);
 
 // Route to clear the cart
-router.post("/clear/:id", cartController.clearCart);
+router.post("/clear", authJwt.verifyToken, cartController.clearCart);
 
 // Route to get all items in the cart
 router.get("/", authJwt.verifyToken, cartController.getItems);

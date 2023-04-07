@@ -8,17 +8,16 @@ dotenv.config();
 
 exports.register = (req, res) => {
   const user = new User(req.body);
-  const salt = bcrypt.genSalt(10).then(() => {
+  bcrypt.genSalt(10).then((salt) => {
     user.password = bcrypt.hashSync(req.body.password, salt);
-  });
-
-  user.save((err, user) => {
-    if (err) {
-      res.status(500).send({ message: err });
-      return;
-    } else {
-      res.send({ message: "User was registered successfully!" });
-    }
+    user.save((err, user) => {
+      if (err) {
+        res.status(500).send({ message: err });
+        return;
+      } else {
+        res.send({ message: "User was registered successfully!" });
+      }
+    });
   });
 };
 

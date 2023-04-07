@@ -1,9 +1,11 @@
+const { default: mongoose } = require("mongoose");
 const Order = require("../model/order.model");
 
 const orderController = {
   // Them order Post: ../order/
   addOrder: async (req, res) => {
     try {
+      const userid = req.userid;
       const newOrder = new Order(req.body);
       const saveOrder = await newOrder.save();
       res.status(200).json(saveOrder);
